@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 120 20% 97%;
+    --foreground: 130 60% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 130 60% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 130 60% 12%;
+    --primary: 122 39% 49%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 88 50% 53%;
+    --secondary-foreground: 130 60% 12%;
+    --muted: 120 15% 92%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 122 39% 80%;
+    --accent-foreground: 130 60% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 120 20% 88%;
+    --input: 120 20% 90%;
+    --ring: 122 39% 49%;
+    --radius: 1rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Hide scrollbars */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-dark {
+  background: rgba(27, 94, 32, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== LIQUID GLASS BUTTON ===== */
+.liquid-btn {
+  background: rgba(76, 175, 80, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 10px rgba(76, 175, 80, 0.2);
+}
+
+/* ===== 3D FLIP CARD ===== */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1rem;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ===== AMBIENT FLOATING BLOBS ===== */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, 20px) scale(0.95); }
+  66% { transform: translate(15px, -25px) scale(1.05); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -15px) rotate(5deg); }
+}
+
+.blob-1 {
+  animation: float1 12s ease-in-out infinite;
+}
+
+.blob-2 {
+  animation: float2 15s ease-in-out infinite;
+}
+
+.blob-3 {
+  animation: float3 10s ease-in-out infinite;
+}
+
+/* ===== SCANNER ANIMATIONS ===== */
+@keyframes scanPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes scanLine {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scan-pulse {
+  animation: scanPulse 2s ease-in-out infinite;
+}
+
+.scan-line {
+  animation: scanLine 2s linear infinite;
+}
+
+/* ===== LOADER ===== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ===== MESSAGE ANIMATIONS ===== */
+@keyframes messageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message-in {
+  animation: messageIn 0.3s ease-out forwards;
+}
+
+/* ===== STAGGER FADE IN ===== */
+@keyframes staggerIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-in {
+  animation: staggerIn 0.5s ease-out forwards;
+}
+
+/* ===== HEART BEAT ===== */
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+}
+
+.heart-beat {
+  animation: heartBeat 0.4s ease-in-out;
+}
+
+/* ===== LIQUID SHIMMER ===== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ===== BOTTOM SHEET ===== */
+.sheet-enter {
+  animation: sheetUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ===== PAGE TRANSITIONS ===== */
+.page-enter {
+  animation: pageIn 0.25s ease-out forwards;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== TIMELINE CONNECTOR ===== */
+.timeline-line {
+  background: linear-gradient(to bottom, #4CAF50, #8BC34A);
+}
+
+/* ===== OVERLAY ===== */
+.overlay-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ===== MASONRY GRID ===== */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  grid-auto-rows: auto;
+}
+
+/* ===== PILL BUTTON ===== */
+.pill-btn {
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.pill-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== PROGRESS BAR ANIMATION ===== */
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+.progress-animated {
+  animation: progressFill 1s ease-out forwards;
+}
+
+/* ===== NOTIFICATION BADGE PULSE ===== */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
